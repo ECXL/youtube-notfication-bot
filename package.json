@@ -1,0 +1,28 @@
+{
+  "name": "yt-notification-bot",
+  "version": "1.0.0",
+  "description": "Discord bot that notifies users when a new video is posted from a youtube channel",
+  "main": "main.js",
+  "scripts": {
+    "test": "node main.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ECXL/youtube-notfication-bot.git"
+  },
+  "keywords": [
+    "youtube",
+    "discord.js",
+    "notification-bot",
+    "discord-bot"
+  ],
+  "author": "ECXL",
+  "license": "ISC",
+  "dependencies": {
+    "discord.js": "^14.6.0",
+    "fs": "^0.0.1-security",
+    "node-fetch": "^3.3.0",
+    "quick.db": "^9.0.6",
+    "rss-converter": "^1.1.6"
+  }
+}
