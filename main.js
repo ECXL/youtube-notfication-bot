@@ -1,13 +1,13 @@
-const Discord = require("discord.js"); //npm npm i discord.js
+const { Client, GatewayIntentBits } = require('discord.js'); // npm i discord.js
 
-const client = new Discord.Client({ intents: [] });
+const client = new Client({ intents: [GatewayIntentBits.Guilds] });
 
 const rss = require('rss-converter'); //npm i rss-converter
 const fs = require('fs'); //npm i fs
 client.config = require('./config.js');
 
 
-client.on('ready', () => { //once you turn on the bot it starts running this code
+client.on('clientReady', () => { //once you turn on the bot it starts running this code
     console.log("Bot is online!");
     ytNotification();
 });
