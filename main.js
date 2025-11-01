@@ -2,18 +2,18 @@ const { Client, GatewayIntentBits } = require('discord.js'); // npm i discord.js
 
 const client = new Client({ intents: [GatewayIntentBits.Guilds] });
 
-const rss = require('rss-converter'); //npm i rss-converter
-const fs = require('fs'); //npm i fs
+const rss = require('rss-converter'); // npm i rss-converter
+const fs = require('fs'); // npm i fs
 client.config = require('./config.js');
 
 
-client.on('clientReady', () => { //once you turn on the bot it starts running this code
+client.on('clientReady', () => { // once you turn on the bot it starts running this code
     console.log("Bot is online!");
     ytNotification();
 });
 
 function ytNotification() {
-    // Initialize links file on startup
+    // initialize links file on startup
     initializeLinksFile();
 
     setInterval(async () => {
@@ -24,7 +24,7 @@ function ytNotification() {
             let foundValidVideo = false;
             let currentItem = 0;
 
-            // Validate config
+            // validate config
             if (!client.config.channelID) {
                 console.error('Error: channelID not configured');
                 return;
@@ -37,13 +37,13 @@ function ytNotification() {
                 }
             }
 
-            // Read links file
+            // read links file
             let linksOpen, json;
             try {
                 linksOpen = fs.readFileSync('links.json', 'utf8');
                 json = JSON.parse(linksOpen);
                 
-                // Ensure json is an array
+                // ensure json is an array
                 if (!Array.isArray(json)) {
                     console.warn('links.json is not an array, resetting...');
                     json = [];
@@ -91,10 +91,10 @@ function ytNotification() {
                 fs.writeFileSync('links.json',vidLink); // write it into file as string
             } catch (error) {
                 console.error('Error writing to links.json:', error.message);
-                // Continue anyway to still send Discord message
+                // continue anyway to still send Discord message
             }
 
-            // Build and send message
+            // build and send message
             let message = client.config.messageTemplate + ytFeed.items[currentItem].yt_videoId;
             const channel = client.channels.cache.get(client.config.disChannel);
             
@@ -113,7 +113,7 @@ function ytNotification() {
         } catch(error) {
             console.error('Unexpected error in ytNotification:', error)
         }  
-    }, client.config.checkInterval); //every 30 seconds
+    }, client.config.checkInterval); // every 30 seconds
 }
 
 function initializeLinksFile() {
@@ -157,4 +157,4 @@ async function isLivestream(videoId, apiKey) {
     }
 }
 
-client.login(client.config.botToken); //logs in to your bot
+client.login(client.config.botToken); // logs in to your bot
