@@ -147,6 +147,18 @@ async function isLivestream(videoId, apiKey) {
                           video.snippet.liveBroadcastContent === 'upcoming' ||
                           video.hasOwnProperty('liveStreamingDetails');
             }
+
+            if (client.config.includePremieres) {
+                const scheduledStart = new Date(video.liveStreamingDetails.scheduledStartTime);
+
+                // check if scheduled time has round minutes AND seconds = 0
+                // does not necessarily mean it is a premiere but if it is not scheduled then it definitely is NOT a premiere
+                const isRoundTime = scheduledStart.getSeconds() === 0 && 
+                                    scheduledStart.getMinutes() % 15 === 0;
+
+                isLive = isLive && !isRoundTime;
+            }
+
             return isLive;
         }
 

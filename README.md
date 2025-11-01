@@ -9,4 +9,4 @@ npm install these files
 
 cd to this directory and run node .
 
-DISCLAIMER: current version filtering out livestreams will also filter out videos that were premiered.
+DISCLAIMER: difference between a previous livestream and premiere is not apparent through YouTube API metadata. However, this branch uses scheduling to help differentiate somewhat. If it is not scheduled then it cannot be a premiere, meaning it definitely is a livestream. However, livestreams can also be scheduled so this is a conditional workaround.
