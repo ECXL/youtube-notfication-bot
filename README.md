@@ -8,3 +8,5 @@ npm install these files
 <a href="https://www.npmjs.com/package/rss-converter" target="_blank">rss-converter</a>
 
 cd to this directory and run node .
+
+DISCLAIMER: current version filtering out livestreams will also filter out videos that were premiered.
